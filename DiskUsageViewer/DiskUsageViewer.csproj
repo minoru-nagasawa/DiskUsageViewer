@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="Aga.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fcc90fbf924463a3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ext\TreeViewAdv\Aga.Controls\obj\Debug\Aga.Controls.dll</HintPath>
+      <HintPath>..\ext\TreeViewAdv\Aga.Controls\bin\Release\Aga.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Ai.Control">
       <HintPath>..\ext\MultiColumnTree\Control\obj\Debug\Ai.Control.dll</HintPath>
@@ -126,10 +126,6 @@
     <ProjectReference Include="..\ext\MultiColumnTree\Control\Control.vbproj">
       <Project>{db9b5181-1528-4647-ace7-ac31f16bbcfa}</Project>
       <Name>Control</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ext\MultiColumnTree\Renderer\Renderer.vbproj">
-      <Project>{c92cca54-e306-4128-905e-2f40d3edad7e}</Project>
-      <Name>Renderer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
