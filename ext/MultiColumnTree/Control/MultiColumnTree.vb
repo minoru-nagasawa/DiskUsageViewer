@@ -4024,21 +4024,24 @@ Public Class MultiColumnTree
     ''' </summary>
     Private Sub measureAll()
         If _nodeHosts.Count = 0 Then
-            _clientArea = New Rectangle(1, _columnControl.Bottom + 1, Me.Width - (_vScroll.Width + 2), Me.Height - (_columnControl.Bottom + 2))
-            _hScroll.Left = 1
-            _hScroll.Top = Me.Height - (_hScroll.Height + 1)
-            _hScroll.Width = Me.Width - 2
-            Dim columnsWidth As Integer = _columnControl.ColumnsWidth + IIf(_checkBoxes, 22, 0)
-            If columnsWidth > Me.Width - (_vScroll.Width + _clientArea.X) Then
-                _hScroll.Visible = True
-                _hScroll.SmallChange = _clientArea.Width / 20
-                _hScroll.LargeChange = _clientArea.Width / 10
-                _hScroll.Maximum = (columnsWidth - _clientArea.Width) + _hScroll.LargeChange
-            Else
-                _hScroll.Visible = False
+            If Me.Width > 0 Then ' For minimize
+                _clientArea = New Rectangle(1, _columnControl.Bottom + 1, Me.Width - (_vScroll.Width + 2), Me.Height - (_columnControl.Bottom + 2))
+                _hScroll.Left = 1
+                _hScroll.Top = Me.Height - (_hScroll.Height + 1)
+                _hScroll.Width = Me.Width - 2
+                Dim columnsWidth As Integer = _columnControl.ColumnsWidth + IIf(_checkBoxes, 22, 0)
+                If columnsWidth > Me.Width - (_vScroll.Width + _clientArea.X) Then
+                    _hScroll.Visible = True
+                    _hScroll.SmallChange = _clientArea.Width / 20
+                    _hScroll.LargeChange = _clientArea.Width / 10
+                    _hScroll.Maximum = (columnsWidth - _clientArea.Width) + _hScroll.LargeChange
+                Else
+                    _hScroll.Visible = False
+                End If
             End If
             Return
         End If
+
         Dim itemsHeight As Integer = 0
         Dim itemsWidth As Integer = _columnControl.ColumnsWidth
         For Each tnHost As TreeNodeHost In _nodeHosts
