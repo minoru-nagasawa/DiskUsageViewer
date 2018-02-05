@@ -54,6 +54,8 @@ namespace DiskUsageViewer
                     m_model.InitializeNode(e.Node.Nodes, e.Node);
                 }
             };
+
+            c_treeView.Columns[1].Format = Ai.Control.ColumnFormat.HumanReadable;
         }
 
         private void c_btnBrowse_Click(object sender, EventArgs e)
@@ -267,6 +269,18 @@ namespace DiskUsageViewer
                 c_treeView.Nodes.Clear();
                 m_model = new TreeModelAi(ofd.FileName);
                 m_model.InitializeNode(c_treeView.Nodes, null);
+            }
+        }
+
+        private void c_menuHumanReadable_Click(object sender, EventArgs e)
+        {
+            if (c_menuHumanReadable.Checked)
+            {
+                c_treeView.Columns[1].Format = Ai.Control.ColumnFormat.HumanReadable;
+            }
+            else
+            {
+                c_treeView.Columns[1].Format = Ai.Control.ColumnFormat.None;
             }
         }
     }

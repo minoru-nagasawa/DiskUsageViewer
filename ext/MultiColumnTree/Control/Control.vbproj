@@ -65,6 +65,7 @@
     <Compile Include="ColumnCustomFilterEventArgs.vb" />
     <Compile Include="ColumnEventArgs.vb" />
     <Compile Include="ColumnHeader.vb" />
+    <Compile Include="DoubleExtension.vb" />
     <Compile Include="MultiColumnTree.vb">
       <SubType>Component</SubType>
     </Compile>

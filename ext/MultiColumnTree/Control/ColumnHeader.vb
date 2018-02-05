@@ -430,6 +430,7 @@ Public Enum ColumnFormat
     Percent
     RoundTrip
     HexaDecimal
+    HumanReadable
     ' Other data type, including string data type.
     None
     Password
@@ -508,11 +509,12 @@ Friend Class ColumnFilterItem
     Public Function CompareTo(ByVal obj As Object) As Integer Implements System.IComparable.CompareTo
         Dim i2 As ColumnFilterItem = DirectCast(obj, ColumnFilterItem)
         Select Case _owner.DisplayFormat
-            Case ColumnFormat.Bar, ColumnFormat.Currency, _
-                ColumnFormat.Custom, ColumnFormat.Exponential, _
-                ColumnFormat.FixedPoint, ColumnFormat.General, _
-                ColumnFormat.HexaDecimal, ColumnFormat.Number, _
-                ColumnFormat.Percent, ColumnFormat.RoundTrip
+            Case ColumnFormat.Bar, ColumnFormat.Currency,
+                ColumnFormat.Custom, ColumnFormat.Exponential,
+                ColumnFormat.FixedPoint, ColumnFormat.General,
+                ColumnFormat.HexaDecimal, ColumnFormat.Number,
+                ColumnFormat.Percent, ColumnFormat.RoundTrip,
+                ColumnFormat.HumanReadable
                 Dim d1 As Double = _value
                 Dim d2 As Double = i2._value
                 Return d1.CompareTo(d2)
@@ -532,11 +534,12 @@ Friend Class ColumnFilterItem
         If TypeOf (obj) Is ColumnFilterItem Then
             Dim i2 As ColumnFilterItem = DirectCast(obj, ColumnFilterItem)
             Select Case _owner.DisplayFormat
-                Case ColumnFormat.Bar, ColumnFormat.Currency, _
-                ColumnFormat.Custom, ColumnFormat.Exponential, _
-                ColumnFormat.FixedPoint, ColumnFormat.General, _
-                ColumnFormat.HexaDecimal, ColumnFormat.Number, _
-                ColumnFormat.Percent, ColumnFormat.RoundTrip
+                Case ColumnFormat.Bar, ColumnFormat.Currency,
+                ColumnFormat.Custom, ColumnFormat.Exponential,
+                ColumnFormat.FixedPoint, ColumnFormat.General,
+                ColumnFormat.HexaDecimal, ColumnFormat.Number,
+                ColumnFormat.Percent, ColumnFormat.RoundTrip,
+                ColumnFormat.HumanReadable
                     Dim d1 As Double = _value
                     Dim d2 As Double = i2._value
                     Return d1.CompareTo(d2) = 0
@@ -734,11 +737,12 @@ Friend Class ColumnFilterHandle
                         Next
                         Return False
                     End If
-                Case ColumnFormat.Bar, ColumnFormat.Currency, _
-                    ColumnFormat.Custom, ColumnFormat.Exponential, _
-                    ColumnFormat.FixedPoint, ColumnFormat.General, _
-                    ColumnFormat.HexaDecimal, ColumnFormat.Number, _
-                    ColumnFormat.Percent, ColumnFormat.RoundTrip
+                Case ColumnFormat.Bar, ColumnFormat.Currency,
+                    ColumnFormat.Custom, ColumnFormat.Exponential,
+                    ColumnFormat.FixedPoint, ColumnFormat.General,
+                    ColumnFormat.HexaDecimal, ColumnFormat.Number,
+                    ColumnFormat.Percent, ColumnFormat.RoundTrip,
+                    ColumnFormat.HumanReadable
                     Dim dblValue As Double = CDbl(itemValue)
                     If _filterMode = FilterMode.ByRange Then
                         Dim dblMin As Double = CDbl(_minValue)
@@ -920,6 +924,8 @@ Friend Class FilterChooser
                                 result = dblValue.ToString("P", _parent._ci)
                             Case ColumnFormat.RoundTrip
                                 result = dblValue.ToString("R", _parent._ci)
+                            Case ColumnFormat.HumanReadable
+                                result = DoubleExtension.BytesToString(dblValue)
                         End Select
                     Catch ex As Exception
                     End Try
@@ -1029,11 +1035,11 @@ Friend Class FilterChooser
                         cmb.SelectedIndex = 0
                     End Try
                     _top = cmb.Bottom + 5
-                Case ColumnFormat.Bar, ColumnFormat.Currency, _
-                    ColumnFormat.Custom, ColumnFormat.Exponential, _
-                    ColumnFormat.FixedPoint, ColumnFormat.General, _
-                    ColumnFormat.HexaDecimal, ColumnFormat.Number, _
-                    ColumnFormat.Percent, ColumnFormat.RoundTrip, ColumnFormat.DecimalNumber
+                Case ColumnFormat.Bar, ColumnFormat.Currency,
+                    ColumnFormat.Custom, ColumnFormat.Exponential,
+                    ColumnFormat.FixedPoint, ColumnFormat.General,
+                    ColumnFormat.HexaDecimal, ColumnFormat.Number,
+                    ColumnFormat.Percent, ColumnFormat.RoundTrip, ColumnFormat.DecimalNumber, ColumnFormat.HumanReadable
                     _rdbRange.Text = "Value range"
                     _top = _rdbRange.Bottom + 2
                     Dim nud1 As NumericUpDown, nud2 As NumericUpDown
@@ -1669,11 +1675,11 @@ Friend Class FilterChooser
                             _filterHandle.RangeMode = cmb.SelectedIndex
                         End If
                     Next
-                Case ColumnFormat.Bar, ColumnFormat.Currency, _
-                    ColumnFormat.Custom, ColumnFormat.Exponential, _
-                    ColumnFormat.FixedPoint, ColumnFormat.General, _
-                    ColumnFormat.HexaDecimal, ColumnFormat.Number, _
-                    ColumnFormat.Percent, ColumnFormat.RoundTrip, ColumnFormat.DecimalNumber
+                Case ColumnFormat.Bar, ColumnFormat.Currency,
+                    ColumnFormat.Custom, ColumnFormat.Exponential,
+                    ColumnFormat.FixedPoint, ColumnFormat.General,
+                    ColumnFormat.HexaDecimal, ColumnFormat.Number,
+                    ColumnFormat.Percent, ColumnFormat.RoundTrip, ColumnFormat.DecimalNumber, ColumnFormat.HumanReadable
                     For Each c As System.Windows.Forms.Control In _ctrlRanges
                         If TypeOf (c) Is NumericUpDown Then
                             Dim nud As NumericUpDown = DirectCast(c, NumericUpDown)

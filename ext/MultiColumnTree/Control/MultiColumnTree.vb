@@ -4158,11 +4158,12 @@ Public Class MultiColumnTree
                     result = value.ToString
                 Case ColumnFormat.Password
                     result = "12345"
-                Case ColumnFormat.Bar, ColumnFormat.Currency, _
-                    ColumnFormat.Custom, ColumnFormat.Exponential, _
-                    ColumnFormat.FixedPoint, ColumnFormat.General, _
-                    ColumnFormat.HexaDecimal, ColumnFormat.Number, _
-                    ColumnFormat.Percent, ColumnFormat.RoundTrip
+                Case ColumnFormat.Bar, ColumnFormat.Currency,
+                    ColumnFormat.Custom, ColumnFormat.Exponential,
+                    ColumnFormat.FixedPoint, ColumnFormat.General,
+                    ColumnFormat.HexaDecimal, ColumnFormat.Number,
+                    ColumnFormat.Percent, ColumnFormat.RoundTrip,
+                    ColumnFormat.HumanReadable
                     ' Convert to double
                     Try
                         Dim dblValue As Double = CDbl(value)
@@ -4185,6 +4186,8 @@ Public Class MultiColumnTree
                                 result = dblValue.ToString("P", _ci)
                             Case ColumnFormat.RoundTrip
                                 result = dblValue.ToString("R", _ci)
+                            Case ColumnFormat.HumanReadable
+                                result = DoubleExtension.BytesToString(dblValue)
                         End Select
                     Catch ex As Exception
                     End Try
