@@ -75,7 +75,6 @@
     <Compile Include="ext\FileFolderDialog.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="src\AutoCommitSQLiteTransaction.cs" />
     <Compile Include="src\TreeModelAi.cs" />
     <Compile Include="src\model\ApplicationDbContext.cs" />
     <Compile Include="src\model\ItemPoco.cs" />
