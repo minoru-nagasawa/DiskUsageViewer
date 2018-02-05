@@ -4053,24 +4053,28 @@ Public Class MultiColumnTree
         _clientArea.X = 1
         _clientArea.Y = _columnControl.Bottom + 1
         Dim heightUsed As Integer = _clientArea.Y
-        _clientArea.Width = Me.Width - (_vScroll.Width + _clientArea.X)
-        If itemsWidth > Me.Width - (_vScroll.Width + _clientArea.X) Then
-            _hScroll.Visible = True
-            _hScroll.SmallChange = _clientArea.Width / 20
-            _hScroll.LargeChange = _clientArea.Width / 10
-            _hScroll.Maximum = (itemsWidth - _clientArea.Width) + _hScroll.LargeChange
-            heightUsed += _hScroll.Height
-        Else
-            _hScroll.Visible = False
+        If Me.Width > 0 Then ' For minimize
+            _clientArea.Width = Me.Width - (_vScroll.Width + _clientArea.X)
+            If itemsWidth > Me.Width - (_vScroll.Width + _clientArea.X) Then
+                _hScroll.Visible = True
+                _hScroll.SmallChange = _clientArea.Width / 20
+                _hScroll.LargeChange = _clientArea.Width / 10
+                _hScroll.Maximum = (itemsWidth - _clientArea.Width) + _hScroll.LargeChange
+                heightUsed += _hScroll.Height
+            Else
+                _hScroll.Visible = False
+            End If
         End If
-        _clientArea.Height = Me.Height - heightUsed
-        If itemsHeight > _clientArea.Height Then
-            _vScroll.Visible = True
-            _vScroll.SmallChange = _clientArea.Height / 20
-            _vScroll.LargeChange = _clientArea.Height / 10
-            _vScroll.Maximum = (itemsHeight - _clientArea.Height) + _vScroll.LargeChange
-        Else
-            _vScroll.Visible = False
+        If Me.Height > 0 Then ' For minimize
+            _clientArea.Height = Me.Height - heightUsed
+            If itemsHeight > _clientArea.Height Then
+                _vScroll.Visible = True
+                _vScroll.SmallChange = _clientArea.Height / 20
+                _vScroll.LargeChange = _clientArea.Height / 10
+                _vScroll.Maximum = (itemsHeight - _clientArea.Height) + _vScroll.LargeChange
+            Else
+                _vScroll.Visible = False
+            End If
         End If
         _vScroll.Top = _clientArea.Y
         _vScroll.Left = Me.Width - (_vScroll.Width + 1)
