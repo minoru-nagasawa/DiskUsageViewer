@@ -29,24 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Ai.Control.ColumnHeader columnHeader11 = new Ai.Control.ColumnHeader();
-            Ai.Control.ColumnHeader columnHeader12 = new Ai.Control.ColumnHeader();
-            Ai.Control.ColumnHeader columnHeader13 = new Ai.Control.ColumnHeader();
-            Ai.Control.ColumnHeader columnHeader14 = new Ai.Control.ColumnHeader();
-            Ai.Control.ColumnHeader columnHeader15 = new Ai.Control.ColumnHeader();
+            Ai.Control.ColumnHeader columnHeader1 = new Ai.Control.ColumnHeader();
+            Ai.Control.ColumnHeader columnHeader2 = new Ai.Control.ColumnHeader();
+            Ai.Control.ColumnHeader columnHeader3 = new Ai.Control.ColumnHeader();
+            Ai.Control.ColumnHeader columnHeader4 = new Ai.Control.ColumnHeader();
+            Ai.Control.ColumnHeader columnHeader5 = new Ai.Control.ColumnHeader();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label2 = new System.Windows.Forms.Label();
             this.c_btnBrowse = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.c_statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.c_btnRun = new System.Windows.Forms.Button();
             this.c_textRootFolder = new System.Windows.Forms.TextBox();
-            this.c_treeView = new Ai.Control.MultiColumnTree();
             this.c_timerStatusUpdate = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.c_menuLoad = new System.Windows.Forms.ToolStripMenuItem();
             this.c_menuTool = new System.Windows.Forms.ToolStripMenuItem();
             this.c_menuHumanReadable = new System.Windows.Forms.ToolStripMenuItem();
+            this.c_treeView = new Ai.Control.MultiColumnTree();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -107,67 +108,6 @@
             this.c_textRootFolder.Size = new System.Drawing.Size(427, 19);
             this.c_textRootFolder.TabIndex = 9;
             // 
-            // c_treeView
-            // 
-            this.c_treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            columnHeader11.CustomFilter = null;
-            columnHeader11.MaximumValue = 0D;
-            columnHeader11.MinimumValue = 0D;
-            columnHeader11.Name = "Column1";
-            columnHeader11.Tag = null;
-            columnHeader11.Text = "Name";
-            columnHeader11.Width = 200;
-            columnHeader12.ColumnAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            columnHeader12.CustomFilter = null;
-            columnHeader12.EnableSorting = true;
-            columnHeader12.MaximumValue = 0D;
-            columnHeader12.MinimumValue = 0D;
-            columnHeader12.Name = "Column2";
-            columnHeader12.SortOrder = System.Windows.Forms.SortOrder.Descending;
-            columnHeader12.Tag = null;
-            columnHeader12.Text = "Size";
-            columnHeader12.Width = 100;
-            columnHeader13.ColumnAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            columnHeader13.CustomFilter = null;
-            columnHeader13.CustomFormat = "0.00";
-            columnHeader13.Format = Ai.Control.ColumnFormat.Custom;
-            columnHeader13.MaximumValue = 100D;
-            columnHeader13.MinimumValue = 0D;
-            columnHeader13.Name = "Column3";
-            columnHeader13.Tag = null;
-            columnHeader13.Text = "%";
-            columnHeader13.Width = 50;
-            columnHeader14.CustomFilter = null;
-            columnHeader14.Format = Ai.Control.ColumnFormat.Bar;
-            columnHeader14.MaximumValue = 100D;
-            columnHeader14.MinimumValue = 0D;
-            columnHeader14.Name = "Column4";
-            columnHeader14.Tag = null;
-            columnHeader14.Text = "";
-            columnHeader15.CustomFilter = null;
-            columnHeader15.EnableSorting = true;
-            columnHeader15.MaximumValue = 0D;
-            columnHeader15.MinimumValue = 0D;
-            columnHeader15.Name = "Column5";
-            columnHeader15.Tag = null;
-            columnHeader15.Text = "Date";
-            columnHeader15.Width = 120;
-            this.c_treeView.Columns.Add(columnHeader11);
-            this.c_treeView.Columns.Add(columnHeader12);
-            this.c_treeView.Columns.Add(columnHeader13);
-            this.c_treeView.Columns.Add(columnHeader14);
-            this.c_treeView.Columns.Add(columnHeader15);
-            this.c_treeView.Culture = new System.Globalization.CultureInfo("en-US");
-            this.c_treeView.Indent = -1;
-            this.c_treeView.Location = new System.Drawing.Point(14, 55);
-            this.c_treeView.Name = "c_treeView";
-            this.c_treeView.Padding = new System.Windows.Forms.Padding(1);
-            this.c_treeView.SelectedNode = null;
-            this.c_treeView.Size = new System.Drawing.Size(577, 408);
-            this.c_treeView.TabIndex = 10;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -190,7 +130,7 @@
             // c_menuLoad
             // 
             this.c_menuLoad.Name = "c_menuLoad";
-            this.c_menuLoad.Size = new System.Drawing.Size(152, 22);
+            this.c_menuLoad.Size = new System.Drawing.Size(114, 22);
             this.c_menuLoad.Text = "Load(&L)";
             this.c_menuLoad.Click += new System.EventHandler(this.c_menuLoad_Click);
             // 
@@ -212,6 +152,67 @@
             this.c_menuHumanReadable.Text = "Show human-readable";
             this.c_menuHumanReadable.Click += new System.EventHandler(this.c_menuHumanReadable_Click);
             // 
+            // c_treeView
+            // 
+            this.c_treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            columnHeader1.CustomFilter = null;
+            columnHeader1.MaximumValue = 0D;
+            columnHeader1.MinimumValue = 0D;
+            columnHeader1.Name = "Column1";
+            columnHeader1.Tag = null;
+            columnHeader1.Text = "Name";
+            columnHeader1.Width = 200;
+            columnHeader2.ColumnAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            columnHeader2.CustomFilter = null;
+            columnHeader2.EnableSorting = true;
+            columnHeader2.MaximumValue = 0D;
+            columnHeader2.MinimumValue = 0D;
+            columnHeader2.Name = "Column2";
+            columnHeader2.SortOrder = System.Windows.Forms.SortOrder.Descending;
+            columnHeader2.Tag = null;
+            columnHeader2.Text = "Size";
+            columnHeader2.Width = 100;
+            columnHeader3.ColumnAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            columnHeader3.CustomFilter = null;
+            columnHeader3.CustomFormat = "0.00";
+            columnHeader3.Format = Ai.Control.ColumnFormat.Custom;
+            columnHeader3.MaximumValue = 100D;
+            columnHeader3.MinimumValue = 0D;
+            columnHeader3.Name = "Column3";
+            columnHeader3.Tag = null;
+            columnHeader3.Text = "%";
+            columnHeader3.Width = 50;
+            columnHeader4.CustomFilter = null;
+            columnHeader4.Format = Ai.Control.ColumnFormat.Bar;
+            columnHeader4.MaximumValue = 100D;
+            columnHeader4.MinimumValue = 0D;
+            columnHeader4.Name = "Column4";
+            columnHeader4.Tag = null;
+            columnHeader4.Text = "";
+            columnHeader5.CustomFilter = null;
+            columnHeader5.EnableSorting = true;
+            columnHeader5.MaximumValue = 0D;
+            columnHeader5.MinimumValue = 0D;
+            columnHeader5.Name = "Column5";
+            columnHeader5.Tag = null;
+            columnHeader5.Text = "Date";
+            columnHeader5.Width = 120;
+            this.c_treeView.Columns.Add(columnHeader1);
+            this.c_treeView.Columns.Add(columnHeader2);
+            this.c_treeView.Columns.Add(columnHeader3);
+            this.c_treeView.Columns.Add(columnHeader4);
+            this.c_treeView.Columns.Add(columnHeader5);
+            this.c_treeView.Culture = new System.Globalization.CultureInfo("en-US");
+            this.c_treeView.Indent = -1;
+            this.c_treeView.Location = new System.Drawing.Point(14, 55);
+            this.c_treeView.Name = "c_treeView";
+            this.c_treeView.Padding = new System.Windows.Forms.Padding(1);
+            this.c_treeView.SelectedNode = null;
+            this.c_treeView.Size = new System.Drawing.Size(577, 408);
+            this.c_treeView.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -224,6 +225,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.c_btnRun);
             this.Controls.Add(this.c_btnBrowse);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "DiskUsageViewer";
