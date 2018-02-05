@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace DiskUsageViewer
 {
+    /// <summary>
+    /// Icon URL http://icooon-mono.com/16024-%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B31/
+    /// </summary>
     public partial class MainForm : Form
     {
         class ScanData
