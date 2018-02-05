@@ -170,7 +170,6 @@ namespace DiskUsageViewer
 
                 using (var command     = new SQLiteCommand(connection))
                 using (var transaction = connection.BeginTransaction())
-                //using (var transaction = new AutoCommitSQLiteTransaction(connection, 1000))
                 {
                     var res = scanFolderSub(command, transaction, 1, a_rootFolder, null);
                     transaction.Commit();
@@ -193,7 +192,6 @@ namespace DiskUsageViewer
             };
             a_command.CommandText = folderItem.CreateInsertCommand();
             a_command.ExecuteNonQuery();
-            //a_transaction.CommitIfNeeds(a_id);
 
             // 子ファイルを追加
             long sizeSum = 0;
@@ -214,7 +212,6 @@ namespace DiskUsageViewer
                     };
                     a_command.CommandText = fileItem.CreateInsertCommand();
                     a_command.ExecuteNonQuery();
-                    //a_transaction.CommitIfNeeds(a_id);
 
                     sizeSum += fileInfo.Length;
                     if (lastDateTime < fileInfo.LastWriteTime)
