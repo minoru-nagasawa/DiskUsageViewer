@@ -40,10 +40,6 @@
             this.c_statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.c_btnRun = new System.Windows.Forms.Button();
             this.c_textRootFolder = new System.Windows.Forms.TextBox();
-            this.c_nodeIcon = new Aga.Controls.Tree.NodeControls.NodeIcon();
-            this.c_nodeName = new Aga.Controls.Tree.NodeControls.NodeTextBox();
-            this.c_nodeSize = new Aga.Controls.Tree.NodeControls.NodeTextBox();
-            this.c_nodeDateTime = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.c_treeView = new Ai.Control.MultiColumnTree();
             this.c_timerStatusUpdate = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -108,25 +104,6 @@
             this.c_textRootFolder.Name = "c_textRootFolder";
             this.c_textRootFolder.Size = new System.Drawing.Size(427, 19);
             this.c_textRootFolder.TabIndex = 9;
-            // 
-            // c_nodeIcon
-            // 
-            this.c_nodeIcon.DataPropertyName = "Icon";
-            // 
-            // c_nodeName
-            // 
-            this.c_nodeName.DataPropertyName = "Name";
-            // 
-            // c_nodeSize
-            // 
-            this.c_nodeSize.Column = 1;
-            this.c_nodeSize.DataPropertyName = "Size";
-            this.c_nodeSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // c_nodeDateTime
-            // 
-            this.c_nodeDateTime.Column = 2;
-            this.c_nodeDateTime.DataPropertyName = "DateTime";
             // 
             // c_treeView
             // 
@@ -244,10 +221,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Button c_btnRun;
         private System.Windows.Forms.TextBox c_textRootFolder;
-        private Aga.Controls.Tree.NodeControls.NodeIcon c_nodeIcon;
-        private Aga.Controls.Tree.NodeControls.NodeTextBox c_nodeName;
-        private Aga.Controls.Tree.NodeControls.NodeTextBox c_nodeSize;
-        private Aga.Controls.Tree.NodeControls.NodeTextBox c_nodeDateTime;
         private Ai.Control.MultiColumnTree c_treeView;
         private System.Windows.Forms.Timer c_timerStatusUpdate;
         private System.Windows.Forms.ToolStripStatusLabel c_statusLabel;
