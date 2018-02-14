@@ -41,6 +41,7 @@ namespace DiskUsageViewer
         public MainForm()
         {
             InitializeComponent();
+            this.Text += " - " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             c_statusLabel.Text = "";
             c_timerStatusUpdate.Interval = 100;
             c_timerStatusUpdate.Tick += (s, e) =>
