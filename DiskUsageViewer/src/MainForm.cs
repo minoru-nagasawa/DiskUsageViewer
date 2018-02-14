@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,6 +35,8 @@ namespace DiskUsageViewer
         }
         private TreeModelAi m_model;
         private string m_currentFile;
+        private bool m_isExecuting;
+        private CancellationTokenSource m_tokenSource;
 
         public MainForm()
         {
@@ -59,6 +62,9 @@ namespace DiskUsageViewer
             };
 
             c_treeView.Columns[1].Format = Ai.Control.ColumnFormat.HumanReadable;
+
+            m_isExecuting = false;
+            m_tokenSource = null;
         }
 
         private void c_btnBrowse_Click(object sender, EventArgs e)
@@ -104,15 +110,26 @@ namespace DiskUsageViewer
 
         private async void c_btnRun_Click(object sender, EventArgs e)
         {
+            if (m_isExecuting )
+            {
+                m_tokenSource?.Cancel();
+                return;
+            }
+
+            m_isExecuting = true;
             string rootFolder = c_textRootFolder.Text;
             if (!Directory.Exists(rootFolder))
             {
+                m_isExecuting = false;
                 return;
             }
 
             // Change scan button until finish
-            c_btnRun.Text = "Scanning...";
-            c_btnRun.Enabled = false;
+            c_btnRun.Text = "Cancel";
+
+            // for cancel
+            m_tokenSource = new CancellationTokenSource();
+            var token = m_tokenSource.Token;
 
             // Start updating status bar 
             m_currentFile = "";
@@ -128,8 +145,8 @@ namespace DiskUsageViewer
                 {
                     rootFolder += "\\";
                 }
-                scanFolderMain(dbPath, rootFolder);
-            });
+                scanFolderMain(dbPath, rootFolder, token);
+            }, token);
 
             // Stop updating status bar 
             c_timerStatusUpdate.Stop();
@@ -139,13 +156,15 @@ namespace DiskUsageViewer
             m_model = new TreeModelAi(dbPath);
             m_model.InitializeNode(c_treeView.Nodes, null);
 
-            // Revert scan button
+            // Revert status
             c_btnRun.Text = "Scan";
-            c_btnRun.Enabled = true;
+            m_tokenSource.Dispose();
+            m_tokenSource = null;
+            m_isExecuting = false;
 
             c_statusLabel.Text = $"Finish {(DateTime.Now - now).TotalSeconds}sec";
         }
-        private void scanFolderMain(string a_dbPath, string a_rootFolder)
+        private void scanFolderMain(string a_dbPath, string a_rootFolder, CancellationToken a_token)
         {
             // Create Table
             var exePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -176,13 +195,13 @@ namespace DiskUsageViewer
                 using (var command     = new SQLiteCommand(connection))
                 using (var transaction = connection.BeginTransaction())
                 {
-                    var res = scanFolderSub(command, transaction, 1, a_rootFolder, null);
+                    var res = scanFolderSub(command, transaction, 1, a_rootFolder, null, a_token);
                     transaction.Commit();
                 }
             }
         }
 
-        private ScanData scanFolderSub(SQLiteCommand a_command, SQLiteTransaction a_transaction, long a_id, string a_folder, long? a_folderId)
+        private ScanData scanFolderSub(SQLiteCommand a_command, SQLiteTransaction a_transaction, long a_id, string a_folder, long? a_folderId, CancellationToken a_token)
         {
             // 自分をDBに追加してIDを取得
             var finfo   = new FileInfo(a_folder);
@@ -226,6 +245,16 @@ namespace DiskUsageViewer
 
                     // Set check folder for status bar.
                     m_currentFile = fileInfo.FullName;
+
+                    // Check Cancel
+                    if (a_token.IsCancellationRequested)
+                    {
+                        folderItem.Size     = sizeSum;
+                        folderItem.DateTime = lastDateTime;
+                        a_command.CommandText = folderItem.CreateUpdateCommand();
+                        a_command.ExecuteNonQuery();
+                        return new ScanData(a_id, sizeSum, lastDateTime);
+                    }
                 }
             }
             catch (Exception)
@@ -238,12 +267,22 @@ namespace DiskUsageViewer
                 var dirs = Directory.GetDirectories(a_folder);
                 foreach (var d in dirs)
                 {
-                    var r = scanFolderSub(a_command, a_transaction, a_id, d + "\\", folderItem.Id);
+                    var r = scanFolderSub(a_command, a_transaction, a_id, d + "\\", folderItem.Id, a_token);
                     a_id = r.Id;
                     sizeSum += r.Size;
                     if (lastDateTime < r.DateTime)
                     {
                         lastDateTime = r.DateTime;
+                    }
+
+                    // Check Cancel
+                    if (a_token.IsCancellationRequested)
+                    {
+                        folderItem.Size     = sizeSum;
+                        folderItem.DateTime = lastDateTime;
+                        a_command.CommandText = folderItem.CreateUpdateCommand();
+                        a_command.ExecuteNonQuery();
+                        return new ScanData(a_id, sizeSum, lastDateTime);
                     }
                 }
             }
