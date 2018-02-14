@@ -286,5 +286,10 @@ namespace DiskUsageViewer
                 c_treeView.Columns[1].Format = Ai.Control.ColumnFormat.None;
             }
         }
+
+        private void c_menuExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

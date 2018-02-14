@@ -48,6 +48,8 @@
             this.c_menuTool = new System.Windows.Forms.ToolStripMenuItem();
             this.c_menuHumanReadable = new System.Windows.Forms.ToolStripMenuItem();
             this.c_treeView = new Ai.Control.MultiColumnTree();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.c_menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -122,7 +124,9 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.c_menuLoad});
+            this.c_menuLoad,
+            this.toolStripSeparator1,
+            this.c_menuExit});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(51, 20);
             this.toolStripMenuItem1.Text = "File(&F)";
@@ -130,7 +134,7 @@
             // c_menuLoad
             // 
             this.c_menuLoad.Name = "c_menuLoad";
-            this.c_menuLoad.Size = new System.Drawing.Size(114, 22);
+            this.c_menuLoad.Size = new System.Drawing.Size(152, 22);
             this.c_menuLoad.Text = "Load(&L)";
             this.c_menuLoad.Click += new System.EventHandler(this.c_menuLoad_Click);
             // 
@@ -213,6 +217,18 @@
             this.c_treeView.Size = new System.Drawing.Size(577, 408);
             this.c_treeView.TabIndex = 10;
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // c_menuExit
+            // 
+            this.c_menuExit.Name = "c_menuExit";
+            this.c_menuExit.Size = new System.Drawing.Size(152, 22);
+            this.c_menuExit.Text = "Exit(&X)";
+            this.c_menuExit.Click += new System.EventHandler(this.c_menuExit_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -252,6 +268,8 @@
         private System.Windows.Forms.ToolStripMenuItem c_menuLoad;
         private System.Windows.Forms.ToolStripMenuItem c_menuTool;
         private System.Windows.Forms.ToolStripMenuItem c_menuHumanReadable;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem c_menuExit;
     }
 }
 
